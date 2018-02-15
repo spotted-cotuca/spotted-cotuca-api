@@ -18,7 +18,7 @@ public class Spot {
     @Text
     private String message;
 
-    private Date date;
+    private Date date = new Date();
 
-    private boolean approved;
+    private boolean approved = false;
 }

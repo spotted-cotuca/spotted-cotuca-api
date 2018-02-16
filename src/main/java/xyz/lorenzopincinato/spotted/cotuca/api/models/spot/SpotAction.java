@@ -26,22 +26,28 @@ public class SpotAction extends Action<Spot> {
 
     @GET("approved")
     public List<Spot> approved() {
-        if (!yawp(Spot.class).where("status", "=", SpotUtils.APPROVED).list().isEmpty())
+        try {
             return yawp(Spot.class).where("status", "=", SpotUtils.APPROVED).list();
-        return Collections.emptyList();
+        } catch (IllegalArgumentException e) {
+            return Collections.emptyList();
+        }
     }
 
     @GET("rejected")
     public List<Spot> rejected() {
-        if (!yawp(Spot.class).where("status", "=", SpotUtils.REJECTED).list().isEmpty())
+        try {
             return yawp(Spot.class).where("status", "=", SpotUtils.REJECTED).list();
-        return Collections.emptyList();
+        } catch (IllegalArgumentException e){
+            return Collections.emptyList();
+        }
     }
 
     @GET("pending")
     public List<Spot> pending() {
-        if (!yawp(Spot.class).where("status", "=", SpotUtils.PENDING).list().isEmpty())
+        try {
             return yawp(Spot.class).where("status", "=", SpotUtils.PENDING).list();
-        return Collections.emptyList();
+        } catch (IllegalArgumentException e){
+            return Collections.emptyList();
+        }
     }
 }

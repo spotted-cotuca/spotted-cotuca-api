@@ -9,5 +9,4 @@ public class SpotShield extends Shield<Spot> {
         // TODO Auto-generated method stub
         allow();
     }
-
 }

@@ -20,5 +20,5 @@ public class Spot {
 
     private Date date = new Date();
 
-    private int status = 0; // 0: pending, -1: rejected, 1: approved
+    private int status = SpotUtils.PENDING;
 }

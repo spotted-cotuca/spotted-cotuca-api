@@ -11,12 +11,12 @@ public class AdminShield extends Shield<Admin> {
 
     @Override
     public void defaults() {
-        FirebaseToken token = AuthHolder.token.get();
-        if (token == null) {
+        String email = AuthHolder.email.get();
+        if (email == null) {
             throw new HttpException(403, "Must pass a firebase-token header to do that.");
         }
 
-        if (!AdminUtils.isAdmin(token.getEmail())) {
+        if (!AdminUtils.isAdmin(email)) {
             throw new HttpException(403, "Not authorized");
         }
         allow(true);

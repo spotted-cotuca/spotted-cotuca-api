@@ -24,7 +24,7 @@ public class FirebaseAuthFilter extends HttpFilter {
             if (!decodedToken.isEmailVerified()) {
                 throw new HttpException(403, "You can only login with a verified e-mail!");
             }
-            AuthHolder.token.set(decodedToken);
+            AuthHolder.email.set(decodedToken.getEmail());
         }
     }
 

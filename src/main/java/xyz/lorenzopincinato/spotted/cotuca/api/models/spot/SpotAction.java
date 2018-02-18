@@ -13,21 +13,23 @@ public class SpotAction extends Action<Spot> {
     @PUT("approve")
     public void approve(IdRef<Spot> id) {
         Spot spot = id.fetch();
-        spot.setStatus(SpotUtils.APPROVED);
+        spot.setStatus(SpotFinals.APPROVED);
         yawp.save(spot);
     }
 
     @PUT("reject")
     public void reject(IdRef<Spot> id) {
         Spot spot = id.fetch();
-        spot.setStatus(SpotUtils.REJECTED);
+        spot.setStatus(SpotFinals.REJECTED);
         yawp.save(spot);
     }
 
     @GET("approved")
     public List<Spot> approved() {
         try {
-            return yawp(Spot.class).where("status", "=", SpotUtils.APPROVED).list();
+            List<Spot> approvedSpotList = yawp(Spot.class).where("status", "=", SpotFinals.APPROVED).list();
+            approvedSpotList.sort(new SpotDateComparator());
+            return approvedSpotList;
         } catch (IllegalArgumentException e) {
             return Collections.emptyList();
         }
@@ -36,7 +38,9 @@ public class SpotAction extends Action<Spot> {
     @GET("rejected")
     public List<Spot> rejected() {
         try {
-            return yawp(Spot.class).where("status", "=", SpotUtils.REJECTED).list();
+            List<Spot> rejectedSpotList = yawp(Spot.class).where("status", "=", SpotFinals.REJECTED).list();
+            rejectedSpotList.sort(new SpotDateComparator());
+            return rejectedSpotList;
         } catch (IllegalArgumentException e){
             return Collections.emptyList();
         }
@@ -45,7 +49,9 @@ public class SpotAction extends Action<Spot> {
     @GET("pending")
     public List<Spot> pending() {
         try {
-            return yawp(Spot.class).where("status", "=", SpotUtils.PENDING).list();
+            List<Spot> pendingSpotList = yawp(Spot.class).where("status", "=", SpotFinals.PENDING).list();
+            pendingSpotList.sort(new SpotDateComparator());
+            return pendingSpotList;
         } catch (IllegalArgumentException e){
             return Collections.emptyList();
         }

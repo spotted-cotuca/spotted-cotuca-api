@@ -6,7 +6,9 @@ import io.yawp.repository.annotations.Id;
 import io.yawp.repository.annotations.Text;
 import lombok.Data;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.TimeZone;
 
 @Data
 @Endpoint(path = "/spots")
@@ -20,5 +22,5 @@ public class Spot {
 
     private Date date = new Date();
 
-    private int status = SpotUtils.PENDING;
+    private int status = SpotFinals.PENDING;
 }

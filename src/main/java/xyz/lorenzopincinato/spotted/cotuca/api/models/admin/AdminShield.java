@@ -2,6 +2,8 @@ package xyz.lorenzopincinato.spotted.cotuca.api.models.admin;
 
 import com.google.firebase.auth.FirebaseToken;
 import io.yawp.commons.http.HttpException;
+import io.yawp.commons.http.JsonResponse;
+import io.yawp.commons.http.annotation.GET;
 import io.yawp.repository.Yawp;
 import io.yawp.repository.shields.Shield;
 import static io.yawp.repository.Yawp.yawp;
@@ -19,6 +21,11 @@ public class AdminShield extends Shield<Admin> {
         if (!AdminUtils.isAdmin(email)) {
             throw new HttpException(403, "Not authorized");
         }
+        allow(true);
+    }
+
+    @GET("me")
+    public void me() {
         allow(true);
     }
 }

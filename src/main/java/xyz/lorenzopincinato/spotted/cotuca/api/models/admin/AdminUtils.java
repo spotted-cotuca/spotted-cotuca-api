@@ -6,7 +6,7 @@ public class AdminUtils {
     public static boolean isAdmin(String email) {
         try {
             return (yawp(Admin.class).where(
-                    "email", "=", email).first() != null || email.equals("lorenzopincinato@gmail.com"));
+                    "email", "=", email).first() != null || email.equals("newspottedcotuca@perere.com"));
 
         } catch (IllegalArgumentException e) {
             return false;

@@ -25,9 +25,9 @@ public class FirebaseAuthFilter extends HttpFilter {
         if (Objects.nonNull(authToken)) {
             String idToken = authToken.split(" ")[1];
             FirebaseToken decodedToken = getFirebase().verifyIdTokenAsync(idToken).get();
-            if (!decodedToken.isEmailVerified()) {
+            /*if (!decodedToken.isEmailVerified()) {
                 throw new HttpException(403, "You can only login with a verified e-mail!");
-            }
+            }*/
             String email = decodedToken.getEmail();
             LOGGER.info(String.format("Authenticated: [%s]", email));
             AuthHolder.email.set(email);

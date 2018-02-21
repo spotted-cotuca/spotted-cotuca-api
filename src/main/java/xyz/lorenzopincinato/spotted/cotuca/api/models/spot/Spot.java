@@ -23,4 +23,6 @@ public class Spot {
     private Date date = new Date();
 
     private int status = SpotFinals.PENDING;
+
+    private String postId = "";
 }

@@ -1,20 +1,42 @@
 package xyz.lorenzopincinato.spotted.cotuca.api.models.spot;
 
+import com.restfb.*;
+import com.restfb.types.GraphResponse;
 import io.yawp.commons.http.annotation.GET;
 import io.yawp.commons.http.annotation.PUT;
 import io.yawp.repository.IdRef;
 import io.yawp.repository.actions.Action;
+import xyz.lorenzopincinato.spotted.cotuca.api.fb.FacebookFinals;
 
 import java.util.Collections;
 import java.util.List;
 
 public class SpotAction extends Action<Spot> {
-
     @PUT("approve")
     public void approve(IdRef<Spot> id) {
         Spot spot = id.fetch();
-        spot.setStatus(SpotFinals.APPROVED);
-        yawp.save(spot);
+        if (spot.getStatus() != SpotFinals.APPROVED) {
+            spot.setStatus(SpotFinals.APPROVED);
+            yawp.save(spot);
+
+            FacebookClient facebookClient = new DefaultFacebookClient(FacebookFinals.PAGE_ACCESS_TOKEN, Version.VERSION_2_5);
+
+            try {
+                GraphResponse publishMessageResponse =
+                        facebookClient.publish("me/feed", GraphResponse.class,
+                                Parameter.with("message", spot.getMessage()));
+
+
+                String postId = publishMessageResponse.getId().split("_")[1];
+                System.out.println("Post ID: " + postId);
+
+                spot.setPostId(postId);
+                yawp.save(spot);
+
+            } catch (Exception e) {
+
+            }
+        }
     }
 
     @PUT("reject")

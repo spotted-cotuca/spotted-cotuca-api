@@ -24,7 +24,7 @@ public class SpotAction extends Action<Spot> {
             try {
                 GraphResponse publishMessageResponse =
                         facebookClient.publish("me/feed", GraphResponse.class,
-                                Parameter.with("message", spot.getMessage()));
+                                Parameter.with("message", "\"" + spot.getMessage() + "\""));
 
 
                 String postId = publishMessageResponse.getId().split("_")[1];

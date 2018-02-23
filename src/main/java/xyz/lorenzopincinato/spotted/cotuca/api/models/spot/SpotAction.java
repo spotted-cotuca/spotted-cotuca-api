@@ -6,10 +6,20 @@ import io.yawp.commons.http.annotation.PUT;
 import io.yawp.repository.IdRef;
 import io.yawp.repository.actions.Action;
 
+import java.util.Map;
 import java.util.Collections;
 import java.util.List;
 
 public class SpotAction extends Action<Spot> {
+    @PUT("addPostId")
+    public void addPostId(IdRef<Spot> id, Map<String, String> params) {
+        Spot spot = id.fetch();
+        if (params.containsKey("postId")) {
+            spot.setPostId(params.get("postId"));
+            yawp.save(spot);
+        }
+    }
+
     @PUT("approve")
     public void approve(IdRef<Spot> id) {
         Spot spot = id.fetch();

@@ -38,12 +38,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.restfb</groupId>
-            <artifactId>restfb</artifactId>
-            <version>2.1.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-admin</artifactId>
             <version>5.9.0</version>

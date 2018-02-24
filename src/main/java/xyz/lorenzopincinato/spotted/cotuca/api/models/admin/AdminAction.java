@@ -24,7 +24,7 @@ public class AdminAction extends Action<Admin> {
           "{" +
             "\"fb_token_key\":\"" + FacebookFinals.PAGE_ACCESS_TOKEN + "\"," +
             "\"tt_consumer_key\":\"" + TwitterFinals.CONSUMER_KEY + "\"," +
-            "\"tt_consumer_secrety\":\"" + TwitterFinals.CONSUMER_SECRET + "\"," +
+            "\"tt_consumer_secret\":\"" + TwitterFinals.CONSUMER_SECRET + "\"," +
             "\"tt_token_key\":\"" + TwitterFinals.ACCESS_TOKEN_KEY + "\"," +
             "\"tt_token_secret\":\"" + TwitterFinals.ACCESS_TOKEN_SECRET + "\"" +
           "}");

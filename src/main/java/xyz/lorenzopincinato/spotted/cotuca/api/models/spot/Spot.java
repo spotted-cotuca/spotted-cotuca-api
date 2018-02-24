@@ -24,5 +24,6 @@ public class Spot {
 
     private int status = SpotFinals.PENDING;
 
-    private String postId = "";
+    private String ttPostId = "";
+    private String fbPostId = "";
 }

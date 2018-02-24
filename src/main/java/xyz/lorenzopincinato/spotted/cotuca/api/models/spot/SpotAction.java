@@ -13,11 +13,21 @@ import java.util.List;
 public class SpotAction extends Action<Spot> {
     @PUT("addPostId")
     public void addPostId(IdRef<Spot> id, Map<String, String> params) {
+	boolean save = false;
+
         Spot spot = id.fetch();
-        if (params.containsKey("postId")) {
-            spot.setPostId(params.get("postId"));
-            yawp.save(spot);
+        if (params.containsKey("fbPostId")) {
+            spot.setFbPostId(params.get("fbPostId"));
+            save = true;
         }
+
+	if (params.containsKey("ttPostId")) {
+            spot.setTtPostId(params.get("ttPostId"));
+            save = true;
+        }
+
+        if (save)
+            yawp.save(spot);
     }
 
     @PUT("approve")
